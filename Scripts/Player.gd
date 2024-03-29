@@ -38,13 +38,24 @@ func _process(delta):
 		primary_posture = secondary_posture
 		interval = 0
 		
+		## ===============
 		## -- Quaternion
-		## Set player goal to tilt the posture
-		## Quaternion is convenient number to controll
-		## object's rotation. Mathematics of this number is 
-		## littbit complecated, but I will intitutively explain this
-		## through text or video chat
+		## ===============
 		
+		## Set player goal to tilt the posture
+		## Quaternion is convenient number to control 
+		## object's rotation. Mathematics of this number is 
+		## little bit complecated, but if you get the picture
+		## it's really exciting tool concerning 3D game
+		## through Discord free free to ask me!
+		## It's not only for you but for me to understand better
+		## 
+		## |---------------------------------------------------------------|
+		## | keywords, Quaternion, Rotation, Slerp(Spherical Interpolation)|
+		## |           sinusoidal function, sin, cos, pytagorath's theorem |
+		## |           unit circule                                        |
+		## |---------------------------------------------------------------|
+	
 		# tilt left size 
 		if (xinput > 0.0): # in input is right size
 			secondary_posture = Quaternion(0.0,0.0,cos(TILT_RADIAN * 0.5),sin(TILT_RADIAN * 0.5))
