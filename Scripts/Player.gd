@@ -45,6 +45,8 @@ var character
 
 # Whey player change the direction of morition,
 # set new posture 
+
+
 var primary_posture = Quaternion(0.0,0.0,0.0,1.0)
 var secondary_posture = Quaternion(0.0,0.0,0.0,1.0)
 var interval = 0.0
@@ -114,6 +116,25 @@ func _process(delta):
 	## in the tutorial text
 	
 	$Character.quaternion = primary_posture.slerp(secondary_posture,interval / SLP_INTERVAL)
+
+	# __________
+	# | Primary |
+	# | Posture |
+	# | 最初の  | t = 0
+	# | 姿勢    |
+	# ~~~~~ ~~~~
+	#    _| |_
+	#    \   /  
+	#     \ /   t = interval / SLP_INTERVAL
+	#      V    $Character.quaternion = primary_posture.slerp(secondary_posture,t) 
+	# __________
+	# |Secondary|
+	# | Posture |
+	# | 最初の  |  t = 1
+	# | 姿勢    |  姿勢が完全に変わったら新しい姿勢を設定する
+	# ~~~~~~~~~~
+
+	
 
 	## Shot a bullet
 
