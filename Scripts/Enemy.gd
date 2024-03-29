@@ -13,7 +13,7 @@ var amplitude = 2.0
 var frequency = 0.0
 var speed = 0.01 * UNIT_TIME
 var initial_x 
-var angular_momentum = 0.0
+var intertia = 0.0
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -40,7 +40,7 @@ func _ready():
 	frequency = 0.05
 	amplitude = 2.0 * randf() 
 	#angluar_momentum = clamp(30.0 * randf(), 10.0, 20.0)
-	angular_momentum = max(20.0, 30.0 * randf())
+	intertia = max(20.0, 30.0 * randf())
 	#$MeshInstance3D
 # ---------------------------------------------
 	
@@ -81,7 +81,7 @@ func _process(delta):
 	
 	
 	## くるくる回転させる処理をここでやってます
-	var theta = tick * 1.0 / angular_momentum;
+	var theta = tick * 1.0 / intertia;
 	var p = Quaternion(0.0,0.0,cos(theta),sin(theta))
 	#var n = position.normalized()
 	var q = Quaternion(0.0,cos(PI * (-0.1 * cos(tick * frequency)+  0.5)),0.0,
