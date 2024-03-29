@@ -15,6 +15,7 @@
 	#	
 	# - This should be implemented from the editor
 	# - ANYWAY COMPLETE THIS!!
+	# - Add discription on drawin user interface 
 	#	
 	# *****************************************************
 
@@ -28,9 +29,9 @@ extends Node3D
 const SPEED = 0.05			# Defines Players speed
 const BORDER_WIDTH = 2			# Defines horizontal movement 
 					# 	limit 横の動きの範囲を決めます
-const BORDER_HEIGHT = 2			# Defines veritcal movement limit 
+const BORDER_HEIGHT = 3.0			# Defines veritcal movement limit 
 					# 	たての動きの範囲を指定します
-const BORDER_HEIGHT_OFFSET = 1		# This is used to adjustment for visuality of the camera
+const BORDER_HEIGHT_OFFSET = 2.5		# This is used to adjustment for visuality of the camera
 
 const TILT_RADIAN = PI * 1.2		# Defines how much the player model is tilted across z axis
 					# 	横移動したときにz軸にたいして
@@ -42,6 +43,9 @@ const SLP_INTERVAL = 0.1 		# set interval to change players posture
 ## Variables -----------------------------------------------------------------------------
 
 var character
+
+## this is used hindering some part of 3d space
+var mask 
 
 # Whey player change the direction of morition,
 # set new posture 
@@ -55,6 +59,9 @@ var interval = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character = $Character
+	
+	mask = $Mask
+	mask.quaternion = $Camera3D.quaternion
 	pass # Replace with function body.
 
 

@@ -11,6 +11,6 @@ albedo_color = Color(1, 0.0941176, 0.0784314, 1)
 script = ExtResource("1_deh3v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.296739, 0, 0, 0, -2.63741e-08, -0.142073, 0, 0.603368, -6.21021e-09, 0, 0, -0.32467)
+transform = Transform3D(0.296739, 0, 0, 0, -2.63741e-08, -0.142073, 0, 0.603368, -6.21021e-09, 0, 0, 0.287484)
 material_override = SubResource("StandardMaterial3D_mkv5s")
 mesh = SubResource("PrismMesh_iibvq")

@@ -23,7 +23,7 @@ func _process(delta):
 		
 	if (global_time % 50 == 0) :  
 		var new_enemy = enemy_factory.instantiate()
-		new_enemy.position = Vector3(randf() * 2.0 - 1,0.0,-8.0)
+		new_enemy.position = Vector3(randf() * 4.0 - 2,0.0,-8.0)
 		self.add_child(new_enemy)
 
 	

@@ -7,11 +7,11 @@ const UNIT_TIME = 0.02
 # behaviors basically this enemy
 # moves sinsoidal movement
 # these are parameters to move that way ~~~
-var amplitude = 4.0
+var amplitude = 2.0
 var frequency = 0.0
 var speed = 0.01 * UNIT_TIME
 var initial_x 
-var angluar_momentum = 0.0
+var angular_momentum = 0.0
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -36,8 +36,9 @@ var interval = 0.0
 func _ready():
 	initial_x = position.x
 	frequency = 0.05
-	amplitude = 5.0 * randf() 
-	angluar_momentum = clamp(100.0 * randf(), 10.0, 100.0)
+	amplitude = 2.0 * randf() 
+	#angluar_momentum = clamp(30.0 * randf(), 10.0, 20.0)
+	angular_momentum = max(20.0, 30.0 * randf())
 	#$MeshInstance3D
 # ---------------------------------------------
 	
@@ -49,7 +50,7 @@ func _process(delta):
 	# if enemy get out of the world , destry itself 
 	# this prevents memory leakage
 	
-	if position.x < -3.0 || position.x > 3.0 || position.z > 5.0 :
+	if position.x < -5.0 || position.x > 5.0 || position.z > 5.0 :
 		queue_free()
 	
 	# ---------------------------------	
@@ -78,7 +79,7 @@ func _process(delta):
 	
 	
 	## くるくる回転させる処理をここでやってます
-	var theta = tick * 1.0 / angluar_momentum;
+	var theta = tick * 1.0 / angular_momentum;
 	var p = Quaternion(0.0,0.0,cos(theta),sin(theta))
 	#var n = position.normalized()
 	var q = Quaternion(0.0,cos(PI * (-0.1 * cos(tick * frequency)+  0.5)),0.0,
