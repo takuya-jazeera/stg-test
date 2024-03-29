@@ -1,6 +1,8 @@
 extends Node3D
 
+const BLAST_FACTORY = preload("res://Scenes/Blast.tscn")
 const UNIT_TIME = 0.02
+
 
 # ---------------------------------------------
 # These parameter determines enemy's movement
@@ -89,7 +91,11 @@ func _process(delta):
 	
 # ---------------------------------------------
 	
-func _exit_tree():
-	if bIsKilled == true :
-		# spawn blast effect
-		pass
+
+func _on_area_3d_body_entered(body):
+	bIsKilled = true
+	var blast = BLAST_FACTORY.instantiate()
+	get_parent().add_child(blast)
+	# $AudioStreamPlayer3D.play()
+	body.queue_free()
+	queue_free()

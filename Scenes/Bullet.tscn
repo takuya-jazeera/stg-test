@@ -26,13 +26,12 @@ rings = 8
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_sk5o8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("SphereMesh_iaici")
+skeleton = NodePath("../..")
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(0.151356, 0, 0, 0, 0.151356, 0, 0, 0, 0.151356, 0, 0, 0)
 shape = SubResource("BoxShape3D_omfts")
-
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

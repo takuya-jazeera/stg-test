@@ -22,8 +22,7 @@
 
 extends Node3D
 
-
-
+const BULLET_FACTORY = preload("res://Scenes/Bullet.tscn")
 ## Constants  ----------------------------------------------------------------------------
 
 const SPEED = 0.05			# Defines Players speed
@@ -54,6 +53,7 @@ var mask
 var primary_posture = Quaternion(0.0,0.0,0.0,1.0)
 var secondary_posture = Quaternion(0.0,0.0,0.0,1.0)
 var interval = 0.0
+var cool_count = 0.0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -164,6 +164,13 @@ func _process(delta):
 	## How do i tell if press button? 
 		
 	# pseudo code 
+	if Input.is_action_pressed("shoot") && cool_count > 0.3 :
+		var bullet = BULLET_FACTORY.instantiate()
+		bullet.position = character.position 		
+		add_child(bullet)
+		cool_count = 0.0
+		
+	cool_count += delta
 	# if puress button foo
 	# then create bullet at the top of player entity
 		

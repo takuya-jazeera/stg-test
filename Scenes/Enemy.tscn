@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpuvlho26w72h"]
+[gd_scene load_steps=5 format=3 uid="uid://bpuvlho26w72h"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_deh3v"]
 
@@ -7,6 +7,8 @@ albedo_color = Color(1, 0.0941176, 0.0784314, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_iibvq"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1lxf"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_deh3v")
 
@@ -14,3 +16,11 @@ script = ExtResource("1_deh3v")
 transform = Transform3D(0.296739, 0, 0, 0, -2.63741e-08, -0.142073, 0, 0.603368, -6.21021e-09, 0, 0, 0.287484)
 material_override = SubResource("StandardMaterial3D_mkv5s")
 mesh = SubResource("PrismMesh_iibvq")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.31, 0, 0, 0, 0.31, 0, 0, 0, 0.31, 0, 0, 0)
+shape = SubResource("BoxShape3D_e1lxf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
