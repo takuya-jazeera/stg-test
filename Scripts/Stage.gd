@@ -1,6 +1,6 @@
 extends Node3D
 
-const enemy_factory = preload("res://Enemy.tscn")
+const enemy_factory = preload("res://Scenes/Enemy.tscn")
 
 # global time 
 # suppose that

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bpuvlho26w72h"]
 
-[ext_resource type="Script" path="res://Enemy.gd" id="1_er6mr"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_deh3v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkv5s"]
 albedo_color = Color(1, 0.0941176, 0.0784314, 1)
@@ -8,7 +8,7 @@ albedo_color = Color(1, 0.0941176, 0.0784314, 1)
 [sub_resource type="PrismMesh" id="PrismMesh_iibvq"]
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_er6mr")
+script = ExtResource("1_deh3v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.186529, 0, 0, 0, -1.63069e-08, -0.0746117, 0, 0.373058, -3.26138e-09, 0, 0, -0.0745695)
