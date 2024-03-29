@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cajxt8e8pniir"]
+
+[ext_resource type="PackedScene" uid="uid://cx1r3lc7kryx8" path="res://Player.tscn" id="1_nvnpp"]
+[ext_resource type="Script" path="res://Scripts/Stage.gd" id="1_wigcw"]
+
+[node name="Stage" type="Node3D"]
+script = ExtResource("1_wigcw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 0.0152591, -4.05082)
+shadow_enabled = true
+
+[node name="Node3D" parent="." instance=ExtResource("1_nvnpp")]
