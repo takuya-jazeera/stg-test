@@ -76,6 +76,20 @@ func _process(delta):
 		##          |=====================|		
 		##        <<   Quaternion Rules!  >>		
 		##          |=====================|		
+		##		*J*
+		##	      プレイヤーが横に移動したときに機体を少しずつ傾ける
+      ##       という処理をクォーターニオンを使って作ります
+      ##       クォーターニオンが直感的に理解できれば、	
+      ##       今後3Dゲームを作りたいとなったときに直面する回転をどうするか
+      ##       についてが分かりやすくなります。下手な字ですけど、以下に
+      ##       概要をまとめました。わかりにくいかもしれません。
+      ##       またSlerpという関数を使いますが、これはざっくりいうと
+      ##       「向きAから向きBにすこしずつ変えていく」というものです
+      ##       以下に概念図のアスキーアートを書いていますのでご覧ください
+      ##       私も説明することで理解が深まりますので、お気軽質問してください
+      ##
+      ##                                                                   T.S.	
+		##       https://ugman.neocities.org/gallery_pics/20240318-02.png		
 		##		
 		##       Set player goal to tilt the posture		
 		##       Quaternion is convenient number to control 		
@@ -115,7 +129,7 @@ func _process(delta):
 	## I will explain about Slerp function
 	## in the tutorial text
 	
-	$Character.quaternion = primary_posture.slerp(secondary_posture,interval / SLP_INTERVAL)
+	character.quaternion = primary_posture.slerp(secondary_posture,interval / SLP_INTERVAL)
 
 	# __________
 	# | Primary |
@@ -152,7 +166,7 @@ func _process(delta):
 	## nothing 
 	
 	# clip the world position within (-2.0,2.0)
-	$Character.position += Vector3(SPEED * xinput, 0.0, -SPEED*yinput)
-	$Character.position.x = clamp($Character.position.x, -BORDER_WIDTH,BORDER_WIDTH)
-	$Character.position.z = clamp($Character.position.z, -BORDER_HEIGHT - BORDER_HEIGHT_OFFSET,BORDER_HEIGHT - BORDER_HEIGHT_OFFSET)	
+	character.position += Vector3(SPEED * xinput, 0.0, -SPEED*yinput)
+	character.position.x = clamp(character.position.x, -BORDER_WIDTH,BORDER_WIDTH)
+	character.position.z = clamp(character.position.z, -BORDER_HEIGHT - BORDER_HEIGHT_OFFSET,BORDER_HEIGHT - BORDER_HEIGHT_OFFSET)	
 
