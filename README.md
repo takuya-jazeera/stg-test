@@ -35,3 +35,7 @@ Fundamentally the programming style is as same as that of 2-dimension. I will co
 とします。
 
 このゲームは3Dで描写されます。しかし動きは二次元平面上で行うため、実質2Dゲームのようになります。私はドット絵などが苦手です。だからグラフィックスの部分は3Dを組み合せようとおもいました。3Dグラフィックスは概念を理解するのがちょっとだけ難しいですが、その部分は重点的に説明をしたいとおもっています。できるだけわかりやすくまとめていくつもりです。
+
+## License
+
+I adopt this repsoitory as MIT license. You can free to modify and redistribute. But remember THERE IS NO WARRANTY to use this. 
