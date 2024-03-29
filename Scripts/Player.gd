@@ -38,18 +38,21 @@ func _process(delta):
 		primary_posture = secondary_posture
 		interval = 0
 		
-		## ===============
-		## -- Quaternion
-		## ===============
-		
-		## Set player goal to tilt the posture
-		## Quaternion is convenient number to control 
-		## object's rotation. Mathematics of this number is 
-		## little bit complecated, but if you get the picture
-		## it's really exciting tool concerning 3D game
-		## through Discord free free to ask me!
-		## It's not only for you but for me to understand better
-		## 
+		##          |=====================|
+		##        <<   Quaternion Rules!  >>
+		##          |=====================|
+		##
+		##       Set player goal to tilt the posture
+		##       Quaternion is convenient number to control 
+		##       object's rotation. Mathematics of this number is 
+		##       little bit complecated, but if you get the picture
+		##       it's really exciting tool concerning 3D game
+		##       through Discord free free to ask me!
+		##       It's not only for you but for me to understand better
+		##       I wrote cheat sheet to explain how quaternion works 
+		##       if you interested see
+		##       https://ugman.neocities.org/gallery_pics/20240318-02.png
+		##
 		## |---------------------------------------------------------------|
 		## | keywords, Quaternion, Rotation, Slerp(Spherical Interpolation)|
 		## |           sinusoidal function, sin, cos, pytagorath's theorem |
