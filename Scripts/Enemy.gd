@@ -1,14 +1,17 @@
 extends Node3D
 
+const UNIT_TIME = 0.02
+
 # ---------------------------------------------
 # These parameter determines enemy's movement
 # behaviors basically this enemy
 # moves sinsoidal movement
 # these are parameters to move that way ~~~
-var amplitude = 2.0
+var amplitude = 4.0
 var frequency = 0.0
-var speed = 0.1
+var speed = 0.01 * UNIT_TIME
 var initial_x 
+var angluar_momentum = 0.0
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -23,19 +26,22 @@ var bIsKilled = false
 # this is added by delta time
 # so the unit is second
 # ---------------------------------------------
-var t = 0.0
+# var t = 0.0
+var tick = 0
+var interval = 0.0
 
 
 # ---------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initial_x = position.x
-	frequency = 2.0 * randf()
-	amplitude = 3.0 * randf() 
+	frequency = 0.05
+	amplitude = 5.0 * randf() 
+	angluar_momentum = clamp(100.0 * randf(), 10.0, 100.0)
+	#$MeshInstance3D
 # ---------------------------------------------
 	
-
-
+	
 # ---------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -61,11 +67,24 @@ func _process(delta):
 	# ---------------------------------
 	#  
 	# 						 (A)                  (B)                      
-	position.x = initial_x + amplitude * sin (t * frequency)
-	position.z += delta
+	position.x = initial_x + amplitude * sin (tick * frequency)
+	position.z += tick * speed
 	
-	# 
-	t += delta
+	interval += delta
+	
+	if (interval > UNIT_TIME) :
+		interval = 0.0
+		tick += 1
+	
+	
+	## くるくる回転させる処理をここでやってます
+	var theta = tick * 1.0 / angluar_momentum;
+	var p = Quaternion(0.0,0.0,cos(theta),sin(theta))
+	#var n = position.normalized()
+	var q = Quaternion(0.0,cos(PI * (-0.1 * cos(tick * frequency)+  0.5)),0.0,
+							sin(PI * (-0.1 * cos(tick*frequency) +  0.5)))
+
+	quaternion = q * p
 	
 # ---------------------------------------------
 	
