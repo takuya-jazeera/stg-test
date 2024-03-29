@@ -2,6 +2,8 @@
 
 ## Introduction
 
+![Screenshot1](screen1.png)
+
 ### English
 
 This is my introductory commitment of Godot Project. I almost forget how to use git. So the process can be like awkward. Please pardon me about this. I will elaborate to re-learn how to use this.
