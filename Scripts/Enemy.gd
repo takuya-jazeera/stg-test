@@ -1,8 +1,8 @@
 extends Node3D
 
 # ---------------------------------------------
-# these parameter determines enemy's movement
-# behaviors basicall this enemy
+# These parameter determines enemy's movement
+# behaviors basically this enemy
 # moves sinsoidal movement
 # these are parameters to move that way ~~~
 var amplitude = 2.0

@@ -61,6 +61,16 @@ func _process(delta):
 		## I will explain about Slerp function
 		## in the tutorial text
 		
+		## Shot a bullet
+		## TODO implement here when player press some button
+		## Player entity shoot a bullet straigth forward
+		## How do i tell if press button? 
+		
+		# pseudo code 
+		# if puress button foo
+		# then create bullet at the top of player entity
+		
+		
 	$Character.quaternion = primary_posture.slerp(secondary_posture,interval / SLP_INTERVAL)
 	interval += delta 
 
