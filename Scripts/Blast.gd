@@ -23,9 +23,37 @@ func _process(delta):
 	interval += delta
 	t += 1
 	if t % 2 == 0 :
+		
+		# --------------------------------------------------------------
+		# 	k indicated the frame of blast sequence
+		# 	as k increases, CPU transfer to gpu 3-dimension vector
+		# 
+		# 	CPUからGPUにデータを転送するには少し時間がかかります、
+		#	UV座標とalpha値を別々に転送するより、一気に転送したほうが効率がよくなります
+		# 	そのためVector3でまとめてシェーダーにデータを転送します
+		#
+		#			(U coordinate, V coordinate, alpha)
+		#                     |				|		----
+		#					  |				|		   |
+		#					  V     		V		   V
+		#          Vector3(1.0 * (k % 4), 1.0 * (k / 4),a)
+		# 		_____ vec3  _____
+		#      | CPU |====>| GPU |
+		#	 	~~~~~       ~~~~~
+		#		% is modulation operator
+		#		if you don't know modulation see
+		# 		[JPN]
+		#			https://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99%E6%BC%94%E7%AE%97 
+		#		[ENG]
+		#			https://en.wikipedia.org/wiki/Modulo
+		#
+		# --------------------------------------------------------------
+		
 		k += 1
 		k = mini(k,8)
+		
 		var a = exp(- k * BLAST_DECAY_MOMENT)
+		# transfer packed data to the GPU
 		my_mat.set_shader_parameter("koma",Vector3(1.0 * (k % 4), 1.0 * (k / 4),a))
 	
 	var idx = int(min(interval * 2,8.0))
