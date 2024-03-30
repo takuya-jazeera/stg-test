@@ -26,5 +26,14 @@ func _process(delta):
 		new_enemy.position = Vector3(randf() * 4.0 - 2,0.0,-8.0)
 		self.add_child(new_enemy)
 
+func _on_collision_shape_3d_tree_exited(body: Node3D):
 	
-	pass
+	## -----------------------------------------------
+	## I need to check this is true
+	## I need to read the diffrence with tree and scene is
+	## because scene name changes if the same objects exist.
+	## -----------------------------------------------
+	
+	if body.name == "Bullet": 
+		body.queue_free()
+	pass # Replace with function body.

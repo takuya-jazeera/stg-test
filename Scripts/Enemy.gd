@@ -1,6 +1,7 @@
 extends Node3D
 
 const BLAST_FACTORY = preload("res://Scenes/Blast.tscn")
+const BULLET_FACTORY = preload("res://Scenes/EnemyBulletA.tscn")
 const UNIT_TIME = 0.02
 
 
@@ -79,6 +80,14 @@ func _process(delta):
 		interval = 0.0
 		tick += 1
 	
+	if tick % 10 == 0 :
+		# decision make
+		if randf() < 0.2 :
+			var bullet = BULLET_FACTORY.instantiate()
+			bullet.v = Vector3(0.0,0.0,0.03)
+			bullet.position = position
+			bullet.scale = Vector3(0.2,0.2,0.2)
+			get_parent().add_child(bullet)
 	
 	## くるくる回転させる処理をここでやってます
 	var theta = tick * 1.0 / intertia;
