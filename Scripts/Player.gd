@@ -94,7 +94,28 @@ func _process(delta):
 		##       「向きAから向きBにすこしずつ変えていく」というものです
 		##       以下に概念図のアスキーアートを書いていますのでご覧ください
 		##       私も説明することで理解が深まりますので、お気軽質問してください
+		##		
+		##		大人でもこのこと知っている人は限られています
+		##		だから、これを乗り越えられたらあなたのプログラミング体験は
+		##		よりよいものになると信じています。がんばってね。 T.S.
 		##
+		##		 __________
+		##		 | Primary |
+		##		 | Posture |
+		##		 | 最初の   | t = 0
+		##		 | 姿勢     |
+		##		 ~~~   ~~~~
+		## 		   _| |_
+		## 		   \   /  
+		## 		    \ /   t = interval / SLP_INTERVAL
+		## 		     V    $Character.quaternion = primary_posture.slerp(secondary_posture,t) 
+		## 		__________
+		## 		|Secondary|
+		## 		| Posture |
+		## 		| 最後の   |  t = 1
+		## 		| 姿勢     |  姿勢が完全に変わったら新しい姿勢を設定する
+		## 		~~~~~~~~~~~
+		## *****************************************************************	
 		##                                                                   T.S.	
 		##       https://ugman.neocities.org/gallery_pics/20240318-02.png		
 		##		
@@ -145,22 +166,6 @@ func _process(delta):
 	## q に　p を　かけると　上記の回転が順番に合成される
 	character.quaternion = p * q
 
-	# __________
-	# | Primary |
-	# | Posture |
-	# | 最初の  | t = 0
-	# | 姿勢    |
-	# ~~~~~ ~~~~
-	#    _| |_
-	#    \   /  
-	#     \ /   t = interval / SLP_INTERVAL
-	#      V    $Character.quaternion = primary_posture.slerp(secondary_posture,t) 
-	# __________
-	# |Secondary|
-	# | Posture |
-	# | 最初の   |  t = 1
-	# | 姿勢     |  姿勢が完全に変わったら新しい姿勢を設定する
-	# ~~~~~~~~~~~
 
 	
 
