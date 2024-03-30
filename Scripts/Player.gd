@@ -19,7 +19,6 @@
 	#	
 	# *****************************************************
 
-
 extends Node3D
 
 const BULLET_FACTORY = preload("res://Scenes/Bullet.tscn")
@@ -42,6 +41,7 @@ const SLP_INTERVAL = 0.1 		# set interval to change players posture
 ## Variables -----------------------------------------------------------------------------
 
 var character
+var shotsound
 
 ## this is used hindering some part of 3d space
 var mask 
@@ -59,7 +59,7 @@ var cool_count = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character = $Character
-	
+	shotsound = $AudioStreamPlayer
 	mask = $Mask
 	mask.quaternion = $Camera3D.quaternion
 	pass # Replace with function body.
@@ -132,11 +132,18 @@ func _process(delta):
 	## -- Slerp (Spherical Interporation)
 	## Interpolate rotation smoothly 
 	##	時間をかけてちょっとずつ向きを変えていく処理です
+	##  途中の傾き具合が　pです
 	##	SLP_INTERVALで決めた時間が経過したら新しい向きと一致します
 	## I will explain about Slerp function
 	## in the tutorial text
 	
-	character.quaternion = primary_posture.slerp(secondary_posture,interval / SLP_INTERVAL)
+	var p = primary_posture.slerp(secondary_posture,interval / SLP_INTERVAL)
+	
+	## 微調整のために　X 軸に対して -90度回転させる
+	var q = Quaternion(sin(-PI* 0.5 * 0.5),0.0,0.0,cos(-PI * 0.5 * 0.5))
+	
+	## q に　p を　かけると　上記の回転が順番に合成される
+	character.quaternion = p * q
 
 	# __________
 	# | Primary |
@@ -151,9 +158,9 @@ func _process(delta):
 	# __________
 	# |Secondary|
 	# | Posture |
-	# | 最初の  |  t = 1
-	# | 姿勢    |  姿勢が完全に変わったら新しい姿勢を設定する
-	# ~~~~~~~~~~
+	# | 最初の   |  t = 1
+	# | 姿勢     |  姿勢が完全に変わったら新しい姿勢を設定する
+	# ~~~~~~~~~~~
 
 	
 
@@ -164,7 +171,9 @@ func _process(delta):
 	## How do i tell if press button? 
 		
 	# pseudo code 
-	if Input.is_action_pressed("shoot") && cool_count > 0.3 :
+	if Input.is_action_pressed("shoot") && cool_count > 0.2 :
+		
+		shotsound.play()
 		var bullet = BULLET_FACTORY.instantiate()
 		bullet.position = character.position 		
 		add_child(bullet)

@@ -95,6 +95,7 @@ func _process(delta):
 func _on_area_3d_body_entered(body):
 	bIsKilled = true
 	var blast = BLAST_FACTORY.instantiate()
+	blast.position = self.position
 	get_parent().add_child(blast)
 	# $AudioStreamPlayer3D.play()
 	body.queue_free()
