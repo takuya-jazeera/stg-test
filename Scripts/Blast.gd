@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------
+# Blast.gd
+# Copyrighted by Takuya S. (2024)
+# this code is distributed under MIT license																		
+# -----------------------------------------------------------------
+
 extends Node3D
 
 const BLAST_DECAY_MOMENT = 0.04
@@ -107,14 +113,15 @@ func _process(delta):
 		#	
 		#	何をやろうとしているか気が付きましたか？
 		#	Don't you ring a bell what I want do?
-		#
+		#  
+		#	I created graphic pattern as floows
 		#	今回爆発のグラフィックは
 		#		 ________
 		#		|0|1|2|3|
 		#		|4|5|6|7| 
 		#		|_|_|_|_|
 		#		|_|_|_|_| 01234567　しか準備していません
-		#	
+		#	then
 		#	だから、
 		#
 		#		8 % 4  = 2
@@ -126,9 +133,9 @@ func _process(delta):
 		#		|L|_|_|_| <---  8 / 4 = 2
 		#		|_|_|_|_|
 		#
-		#	となったときグラフィックが消えてしまいます
-		#	それじゃ困った
-		#	そうはしたくないので、mini(x,y)という関数を使います
+		#	となったときグラフィックが消えてしまいます   Wow! we can't see any graphics
+		#	それじゃ困った what's happning????
+		#	そうはしたくないので、mini(x,y)という関数を使います 
 		#	これはどちらxとyのうち小さいほうの数を出力するという関数です
 		#	MINi(小さいほうの) Integer(整数) の略です
 		#
@@ -136,14 +143,20 @@ func _process(delta):
 		#		 ________
 		#		|0|1|2|3|
 		#		|4|5|6|7| 7のところでとまってくれます。
-		#		|_|_|_|_| 
+		#		|_|_|_|_|  Hmmm
 		#		|_|_|_|_|
 		#
 		#	わたしはこうやって爆発を表現しました
+		#	This is my way to express the explosion!
 		#   0から7までの数字を
-		#	あとは　X = i % 4, Y = i / 4　としてあげれば
-		#	
+		#	あとは　X = mini(i,7) % 4, Y = mini(i,7) / 4　として
 		#	これをシェーダーのほうに送ってあげれば、
+		#						 |
+		#						 V
+		#					my_mat.set_shader_parameter("koma",Vector3(X,Y,a)) # 上にかいたけど、わかりにくいとおもうから
+		#													   # 透明さ(a)もおくってあげようっていう考えです
+		#											    
+		#
 		#	切り取った画像を(X,Y)に応じて張り付けてくれるっていう仕組みです
 		#	もっと詳しく説明するとUV座標(UV Coordination)っていうものを
 		#	理解する必要があるんだけれど、またそれは Shaders/Blast.gdshader　のほうでお話しましょう
