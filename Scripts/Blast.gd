@@ -31,6 +31,8 @@ func _process(delta):
 		#	CPUからGPUにデータを転送するには少し時間がかかります、
 		#	UV座標とalpha値を別々に転送するより、一気に転送したほうが効率がよくなります
 		#	そのためVector3でまとめてシェーダーにデータを転送します
+		# 		
+		# 						TODO for me --> read Yusuke Fujii et al. (2013) 
 		#
 		#			(U coordinate, V coordinate, alpha)
 		#					 |	|	|
@@ -152,9 +154,8 @@ func _process(delta):
 		#			https://ja.wikipedia.org/wiki/%E5%89%B0%E4%BD%99%E6%BC%94%E7%AE%97 
 		#		^ [ENG]
 		#			https://en.wikipedia.org/wiki/Modulo
-				# I' m curious how the data is transfered to GPU through
-		# the spinal bus
-		# TODO --> read Yusuke Fujii et al. (2023) 
+		# 			I' m curious how the data is transfered to GPU through
+
 		# 
 		#
 		# --------------------------------------------------------------
