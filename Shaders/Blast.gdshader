@@ -2,6 +2,10 @@ shader_type spatial;
 uniform sampler2D tex;
 uniform vec3 koma = vec3(0.0,0.0,0.0);
 
+// よくここまでこれましたね
+// みてくれてありがとう
+// 以下のプログラムの説明を今書いているから
+// ちょっとまってね
 
 void vertex() {
 	// Called for every vertex the material is visible on.

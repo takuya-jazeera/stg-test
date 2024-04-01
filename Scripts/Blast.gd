@@ -41,9 +41,9 @@ func _process(delta):
 		# 						TODO for me --> read Yusuke Fujii et al. (2013) 
 		#
 		#			(U coordinate, V coordinate, alpha)
-		#					 |	|	|
-		#					 |	|	|
-		#					 V     	V	V
+		#					 |		|					|
+		#					 |		|					|
+		#					 V     	V					V
 		# 			Vector3(1.0 * (k % 4), 1.0 * (k / 4),a)
 		#
 		# 		_____ vec3  _____
@@ -143,7 +143,7 @@ func _process(delta):
 		#		 ________
 		#		|0|1|2|3|
 		#		|4|5|6|7| 7のところでとまってくれます。
-		#		|_|_|_|_|  Hmmm
+		#		|_|_|_|_|  Hmmm  tres bien!
 		#		|_|_|_|_|
 		#
 		#	わたしはこうやって爆発を表現しました
@@ -153,8 +153,8 @@ func _process(delta):
 		#	これをシェーダーのほうに送ってあげれば、
 		#						 |
 		#						 V
-		#					my_mat.set_shader_parameter("koma",Vector3(X,Y,a)) # 上にかいたけど、わかりにくいとおもうから
-		#													   # 透明さ(a)もおくってあげようっていう考えです
+		#					my_mat.set_shader_parameter("koma",Vector3(X,Y,a)) 
+		#													   # ついでに透明さ(a)もおくってます
 		#											    
 		#
 		#	切り取った画像を(X,Y)に応じて張り付けてくれるっていう仕組みです
