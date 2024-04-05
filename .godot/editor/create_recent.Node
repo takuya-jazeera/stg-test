@@ -1,0 +1,7 @@
+AudioStreamPlayer
+MeshInstance3D
+CollisionShape3D
+Area3D
+AudioListener3D
+AudioStreamPlayer3D
+RigidBody3D
