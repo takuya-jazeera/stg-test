@@ -1,7 +1,8 @@
 extends Node3D
 
 const enemy_factory = preload("res://Scenes/Enemy.tscn")
-
+const boss_factory = preload("res://Scenes/MiniBoss.tscn")
+const bird_factory = preload("res://Scenes/Bird.tscn")
 # global time 
 # suppose that
 # game time unit is 10ms
@@ -23,8 +24,21 @@ func _process(delta):
 		
 	if (global_time % 50 == 0) :  
 		var new_enemy = enemy_factory.instantiate()
-		new_enemy.position = Vector3(randf() * 4.0 - 2,0.0,-8.0)
+		new_enemy.position = Vector3(randf() * 4.0 - 2,0.0,-6.0)
 		self.add_child(new_enemy)
+		
+	if (global_time % 1000 == 0) :
+		var new_boss = boss_factory.instantiate()
+		new_boss.position = Vector3(0.0,0.0,-6.0)
+		self.add_child(new_boss)
+		
+	if (global_time % 1500 == 0):
+		var new_bird = bird_factory.instantiate()
+		new_bird.position = Vector3(randf()-1.0,0.0,-6.0)       
+		self.add_child(new_bird)
+		
+	var bgmat = $background.get_active_material(0)
+	bgmat.set_shader_parameter("phase",0.01 * global_time)
 
 func _on_collision_shape_3d_tree_exited(body: Node3D):
 	

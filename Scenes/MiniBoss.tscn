@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf70f3t4kmjyx"]
+
+[ext_resource type="Script" path="res://Scripts/MiniBoss.gd" id="1_minwq"]
+[ext_resource type="PackedScene" uid="uid://6d4fm6v65abo" path="res://Models/mini-boss.glb" id="1_s0ae5"]
+[ext_resource type="Script" path="res://Scripts/mini-boss.gd" id="3_f2d27"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nc5mk"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_minwq")
+
+[node name="mini-boss" parent="." instance=ExtResource("1_s0ae5")]
+script = ExtResource("3_f2d27")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.445, 0, 0, 0, 0.445, 0, 0, 0, 0.445, 0, 0, 0)
+shape = SubResource("BoxShape3D_nc5mk")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dahqddhnl4fkm"]
+
+[ext_resource type="Shader" path="res://Shaders/Blast.gdshader" id="1_500uk"]
+[ext_resource type="Texture2D" uid="uid://t5uq1gxd6lms" path="res://Res/blast1.png" id="2_qpb0o"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_500uk")
+shader_parameter/koma = Vector3(0, 0, 0)
+shader_parameter/tex = ExtResource("2_qpb0o")

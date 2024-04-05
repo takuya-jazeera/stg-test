@@ -1,6 +1,8 @@
+class_name Bullet
 extends Node3D
 
 const UNIT_TIME = 0.01
+
 
 var speed
 var tick = 0

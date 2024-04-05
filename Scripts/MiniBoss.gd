@@ -1,27 +1,24 @@
-class_name Enemy
-extends Node3D
+class_name Boss
+extends Enemy
 
-const BLAST_FACTORY = preload("res://Scenes/Blast.tscn")
-const BULLET_FACTORY = preload("res://Scenes/EnemyBulletA.tscn")
-const UNIT_TIME = 0.02
+const GOD_TIME = 0.03
 
 # ---------------------------------------------
 # These parameter determines enemy's movement
 # behaviors basically this enemy
 # moves sinsoidal movement
 # these are parameters to move that way ~~~
-var amplitude = 2.0
-var frequency = 0.0
-var speed = 0.01 * UNIT_TIME
-var initial_x 
-var intertia = 0.0
+
+var damage_cooltime = 0
+var health = 100
 # ---------------------------------------------
 
 # ---------------------------------------------
 # if player destroy this 
 # this flag is enabled
 # and when it destroyed spawn blasting effect
-var bIsKilled = false
+
+var bIsDamaging = false
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -30,23 +27,11 @@ var bIsKilled = false
 # so the unit is second
 # ---------------------------------------------
 # var t = 0.0
-var tick = 0
-var interval = 0.0
 
 # Called everframe by process()
 func _movement():
-	position.x = initial_x + amplitude * sin (tick * frequency)
-	position.z += tick * speed
+	position.z += tick * speed * 0.1
 	
-	
-	## くるくる回転させる処理をここでやってます
-	var theta = tick * 1.0 / intertia;
-	var p = Quaternion(0.0,0.0,cos(theta),sin(theta))
-	#var n = position.normalized()
-	#var q = Quaternion(0.0,cos(PI * (-0.1 * cos(tick * frequency)+  0.5)),0.0,
-	#						sin(PI * (-0.1 * cos(tick*frequency) +  0.5)))
-	quaternion = p
-	#quaternion = q * p	
 	pass
 
 # ---------------------------------------------
@@ -56,10 +41,25 @@ func _ready():
 	frequency = 0.3
 	amplitude = 0.5 * randf() 
 	#angluar_momentum = clamp(30.0 * randf(), 10.0, 20.0)
-	intertia = max(10.0, 30.0 * randf())
+	intertia = max(20.0, 30.0 * randf())
 	#$MeshInstance3D
 # ---------------------------------------------
+
+func _shoot():
+	if tick % 200 == 0 :
+		for i in 10 :
+			var bullet = BULLET_FACTORY.instantiate()
+			var phi = i * PI * 0.2
+			bullet.position = position + 1.5 * Vector3(0.1*cos(phi),0.0,0.1*sin(phi))
+			bullet.v = 0.05 * Vector3(cos(i* PI * 0.1),0.0,sin(i * PI * 0.1))
+			get_parent().add_child(bullet)
+			Audio.get_node("Enemy_Shoot").play()
 	
+
+func _express_damage(action) :
+	var model = $"mini-boss/Cone"
+	var mat = model.get_active_material(0)
+	mat.set_shader_parameter("flash",action)
 	
 # ---------------------------------------------
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -75,27 +75,45 @@ func _process(delta):
 	if (interval > UNIT_TIME) :
 		interval = 0.0
 		tick += 1
+		if bIsDamaging == true :
+			damage_cooltime -= 1
+			if  damage_cooltime < 0:
+				bIsDamaging = false
+			_express_damage(damage_cooltime * 0.1)
+		else :
+			_express_damage(0.1)
+			#var mat =			mat.set_shader_parameter("flash",1.0)
 	
-	#if tick % 10 == 0 :
-	#	# decision make
-	#	if randf() < 0.1 :
-	#		var bullet = BULLET_FACTORY.instantiate()
-	#		bullet.v = Vector3(0.0,0.0,0.03)
-	#		bullet.position = position
-	#		bullet.scale = Vector3(0.2,0.2,0.2)
-	#		get_parent().add_child(bullet)
-
+	_shoot()
+			
+	###
+	###if tick % 10 == 0 :
+	####	# decision make
+	#	if randf() < 0.2 :
+#			var bullet = BULLET_FACTORY.instantiate()
+##########		get_parent().add_child(bullet)
+	
 	_movement()
+	
 # ---------------------------------------------
 	
 
 func _on_area_3d_body_entered(body):
-	print(body.get_parent().name)
-	if bIsKilled != true :
-		bIsKilled = true
+	
+	if bIsDamaging == false :
+		health -= 10
+	
+	if ( health < 0 ):
 		var blast = BLAST_FACTORY.instantiate()
 		blast.position = self.position
 		get_parent().add_child(blast)
-		# $AudioStreamPlayer3D.play()
-		body.queue_free()
+	# $AudioStreamPlayer3D.play()
 		queue_free()
+	
+	if bIsDamaging == false : 
+			 
+		Audio.get_node("Damaging").play()
+		bIsDamaging = true;
+		damage_cooltime = 10
+		
+	body.queue_free()

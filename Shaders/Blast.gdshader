@@ -1,4 +1,6 @@
 shader_type spatial;
+render_mode unshaded;
+
 uniform sampler2D tex;
 uniform vec3 koma = vec3(0.0,0.0,0.0);
 

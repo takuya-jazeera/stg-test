@@ -8,19 +8,24 @@ extends Node3D
 
 const BLAST_DECAY_MOMENT = 0.04
 
-var LIFE_TIME = 0.8
+var my_mat
+var LIFE_TIME = 0.4
 var interval = 0.0
-var my_mat = preload("res://Materials/Blast.tres")
-var tex_source = preload("res://Res/blast1.png")
+# @onready var my_mat = preload("res://Materials/Blast.tres")
+static var tex_source 
 
 var t = 0
 var k = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AudioStreamPlayer.play()
+	Audio.get_node("Blast").play()
+	
+	tex_source = load("res://Res/blast1.png")
+	my_mat = load("res://Materials/Blast.tres")
 	$MeshInstance3D.material_override = my_mat
 	my_mat.set_shader_parameter("tex",tex_source)
+	my_mat.setup_local_to_scene() ## this is important
 	var phi = PI * randf()
 	quaternion = Quaternion(0.0,cos(phi),0.0,sin(phi))
 
@@ -183,7 +188,7 @@ func _process(delta):
 		# the constant BLAST_DECAY_MOMENT determines
 		# the speed of decay
 		
-		var a = exp(- k * BLAST_DECAY_MOMENT)
+		var a = 1.0
 		
 		# transfer packed data to the GPU
 		my_mat.set_shader_parameter("koma",Vector3(1.0 * (k % 4), 1.0 * (k / 4),a))

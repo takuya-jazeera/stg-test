@@ -41,7 +41,6 @@ const SLP_INTERVAL = 0.1 		# set interval to change players posture
 ## Variables -----------------------------------------------------------------------------
 
 var character
-var shotsound
 
 ## this is used hindering some part of 3d space
 var mask 
@@ -59,7 +58,6 @@ var cool_count = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character = $Character
-	shotsound = $AudioStreamPlayer
 	mask = $Mask
 	mask.quaternion = $Camera3D.quaternion
 	pass # Replace with function body.
@@ -88,20 +86,12 @@ func _process(delta):
 		##       という処理をクォーターニオンを使って作ります
 		##       クォーターニオンが直感的に理解できれば、	
 		##       今後3Dゲームを作りたいとなったときに直面する回転をどうするか
-		##       についてが分かりやすくなります。下手な字ですけど、以下に
-		##       概要をまとめました。わかりにくいかもしれません。
-		##
-		##       https://ugman.neocities.org/gallery_pics/20240318-02.png		
+		##       についてが分かりやすくなります。
 		##
 		##       またSlerpという関数を使いますが、これはざっくりいうと
 		##       「向きAから向きBにすこしずつ変えていく」というものです
 		##       以下に概念図のアスキーアートを書いていますのでご覧ください
-		##       私も説明することで理解が深まりますので、お気軽質問してください
-		##
-		##		
-		##		大人でもこのこと知っている人は限られています
-		##		だから、これを乗り越えられたらあなたのプログラミング体験は
-		##		よりよいものになると信じています。がんばってね。 T.S.
+		##       私も説明することで理解が深まりますので、お気軽にご質問してください
 		##
 		##		 __________
 		##		 | Primary |
@@ -119,9 +109,6 @@ func _process(delta):
 		## 		| 最後の   |  t = 1
 		## 		| 姿勢     |  姿勢が完全に変わったら新しい姿勢を設定する
 		## 		~~~~~~~~~~~
-		## *****************************************************************	
-		##                                                                   T.S.	
-		##       https://ugman.neocities.org/gallery_pics/20240318-02.png		
 		##		
 		##       Set player goal to tilt the posture		
 		##       Quaternion is convenient number to control 		
@@ -130,9 +117,6 @@ func _process(delta):
 		##       it's really exciting tool concerning 3D game		
 		##       through feel free to ask me!		
 		##       It's not only for you but for me to understand better		
-		##       I wrote cheat sheet to explain how quaternion works 		
-		##       if you interested see		
-		##       https://ugman.neocities.org/gallery_pics/20240318-02.png		
 		##		
 		##  |---------------------------------------------------------------|		
 		##  | keywords, Quaternion, Rotation, Slerp(Spherical Interpolation)|		
@@ -182,9 +166,10 @@ func _process(delta):
 	# pseudo code 
 	if Input.is_action_pressed("shoot") && cool_count > 0.2 :
 		
-		shotsound.play()
+		Audio.get_node("Shoot").play()
 		var bullet = BULLET_FACTORY.instantiate()
 		bullet.position = character.position 		
+		bullet.name =  "Bullet"
 		add_child(bullet)
 		cool_count = 0.0
 		

@@ -23,7 +23,7 @@ rings = 8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omfts"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Bullet" type="Node3D"]
 script = ExtResource("1_sk5o8")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhxo6xeutkjmd"]
 
-[ext_resource type="Script" path="res://Scenes/EnemyBulletA.gd" id="1_e2nfq"]
+[ext_resource type="Script" path="res://Scripts/EnemyBulletA.gd" id="1_77ono"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_45uv4"]
 
 [node name="Bullet" type="Node3D"]
-script = ExtResource("1_e2nfq")
+script = ExtResource("1_77ono")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0872948, 0)

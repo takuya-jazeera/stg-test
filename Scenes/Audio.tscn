@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2wvngvjmr1fu"]
+
+[ext_resource type="AudioStream" uid="uid://c7uhdv1boswq3" path="res://Sounds/bomb.ogg" id="1_5mu1h"]
+[ext_resource type="AudioStream" uid="uid://u7e80vlgm6b1" path="res://Sounds/shot.wav" id="2_2582u"]
+[ext_resource type="AudioStream" uid="uid://bke3cqslupjaq" path="res://Sounds/damaging.mp3" id="3_e0pgg"]
+[ext_resource type="AudioStream" uid="uid://bcy8r26nyaccs" path="res://Sounds/enemy_shoot.ogg" id="4_q4uev"]
+
+[node name="Audio" type="Node3D"]
+
+[node name="Blast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_5mu1h")
+volume_db = -36.254
+pitch_scale = 1.07
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2582u")
+pitch_scale = 2.45
+max_polyphony = 20
+
+[node name="Damaging" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_e0pgg")
+volume_db = -4.72
+max_polyphony = 5
+
+[node name="Enemy_Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q4uev")

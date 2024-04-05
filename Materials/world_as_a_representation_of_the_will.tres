@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://qpg3as8ubhi4"]
+
+[ext_resource type="Shader" path="res://Shaders/world_as_a_representation_of_the_wil.gdshader" id="1_503gi"]
+[ext_resource type="Texture2D" uid="uid://b2eyh5xqu4meo" path="res://Textures/bg.png" id="2_sa11w"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_503gi")
+shader_parameter/phase = 0.0
+shader_parameter/tex = ExtResource("2_sa11w")
