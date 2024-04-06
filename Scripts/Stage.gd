@@ -21,11 +21,12 @@ func _ready():
 		for idx in range(parser.get_attribute_count()):
 			attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
 		print(node_name ,":", attributes_dict)
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	
 	tick += delta
 	if (tick > GT_INTERVAL) : 
 		global_time += 1

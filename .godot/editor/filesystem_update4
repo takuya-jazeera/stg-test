@@ -1,10 +1,10 @@
 res://Stage.tscn
-res://Shaders/ui.gdshader
 res://Shaders/Blast.gdshader
 res://Materials/Blast.tres
 res://Materials/Bullet.tres
-res://Shaders/enemy_boss.gdshader
+res://Shaders/ui.gdshader
 res://Materials/enemy1.tres
+res://Shaders/enemy_boss.gdshader
 res://Materials/Mini_Boss.tres
 res://Materials/bird.tres
 res://Shaders/world_as_a_representation_of_the_wil.gdshader
@@ -17,7 +17,8 @@ res://Scenes/MiniBoss.tscn
 res://Scenes/Enemy.tscn
 res://Scenes/Audio.tscn
 res://Scenes/Bird.tscn
+res://Scripts/Effect.gd
 res://Scripts/Enemy.gd
-res://Scripts/MiniBoss.gd
-res://Scripts/Bullet.gd
+res://Scenes/Effect.tscn
+res://Scripts/Audio.gd
 res://Scripts/Stage.gd

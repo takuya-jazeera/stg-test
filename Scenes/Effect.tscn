@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://d34f7iu2te4yf"]
+
+[ext_resource type="Script" path="res://Scripts/Effect.gd" id="1_rrobd"]
+[ext_resource type="Material" uid="uid://bdjog0cacmr2x" path="res://Materials/Blast.tres" id="2_dpjpm"]
+[ext_resource type="AudioStream" uid="uid://ct386qsfxy0k1" path="res://Sounds/explode1.ogg" id="3_yr3ri"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vy21j"]
+material = ExtResource("2_dpjpm")
+
+[node name="Effect" type="Node3D"]
+script = ExtResource("1_rrobd")
+
+[node name="Effect_X" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 1, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("PlaneMesh_vy21j")
+
+[node name="AExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yr3ri")
+max_polyphony = 5

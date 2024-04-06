@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cajxt8e8pniir"]
+[gd_scene load_steps=7 format=3 uid="uid://cajxt8e8pniir"]
 
 [ext_resource type="PackedScene" uid="uid://cx1r3lc7kryx8" path="res://Scenes/Player.tscn" id="1_nvnpp"]
 [ext_resource type="Script" path="res://Scripts/Stage.gd" id="1_wigcw"]
 [ext_resource type="Material" uid="uid://qpg3as8ubhi4" path="res://Materials/world_as_a_representation_of_the_will.tres" id="3_8n6oh"]
+[ext_resource type="AudioStream" uid="uid://dt3yghyit7o7u" path="res://Ambients/bgm.ogg" id="4_yh60h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_um3kx"]
 size = Vector3(20, 10, 40)
@@ -30,5 +31,10 @@ shape = SubResource("BoxShape3D_um3kx")
 [node name="background" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.52974, 0)
 mesh = SubResource("QuadMesh_65adi")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yh60h")
+volume_db = -7.605
+autoplay = true
 
 [connection signal="tree_exited" from="LifeZone/CollisionShape3D" to="." method="_on_collision_shape_3d_tree_exited"]

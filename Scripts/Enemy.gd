@@ -1,7 +1,7 @@
 class_name Enemy
 extends Node3D
 
-const BLAST_FACTORY = preload("res://Scenes/Blast.tscn")
+const BLAST_FACTORY = preload("res://Scenes/Effect.tscn")
 const BULLET_FACTORY = preload("res://Scenes/EnemyBulletA.tscn")
 const UNIT_TIME = 0.02
 
@@ -15,7 +15,7 @@ var frequency = 0.0
 var speed = 0.01 * UNIT_TIME
 var initial_x 
 var intertia = 0.0
-var health = 10
+var health = 1	
 
 # ---------------------------------------------
 
