@@ -10,6 +10,7 @@ var interval = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	speed = 8.0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

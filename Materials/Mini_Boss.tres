@@ -1,10 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://3mukxxh4i4mm"]
 
 [ext_resource type="Shader" path="res://Shaders/enemy_boss.gdshader" id="1_0sp4k"]
-[ext_resource type="Texture2D" uid="uid://dcss6j28lw00q" path="res://Models/mini-boss_mini-boss.png" id="2_6udxe"]
+[ext_resource type="Texture2D" uid="uid://dcss6j28lw00q" path="res://Models/mini-boss_mini-boss.png" id="2_3uetl"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_0sp4k")
-shader_parameter/flash = 0.1
-shader_parameter/tex = ExtResource("2_6udxe")
+shader_parameter/flash = 0.295
+shader_parameter/tex = ExtResource("2_3uetl")

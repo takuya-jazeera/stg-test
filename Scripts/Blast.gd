@@ -44,11 +44,12 @@ func _process(delta):
 		#	そのためVector3でまとめてシェーダーにデータを転送します
 		# 		
 		# 						TODO for me --> read Yusuke Fujii et al. (2013) 
+		#										I also check Chris Gregg et al. (2011)
 		#
 		#			(U coordinate, V coordinate, alpha)
-		#					 |		|					|
-		#					 |		|					|
-		#					 V     	V					V
+		#					 |		|				|
+		#					 |		|				|
+		#					 V     	V				V
 		# 			Vector3(1.0 * (k % 4), 1.0 * (k / 4),a)
 		#
 		# 		_____ vec3  _____

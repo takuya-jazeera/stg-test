@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<Stage level_id="0">
+    <Enemies>
+        <Enemy Type="foo" Tick="100" Coord_X="0.0" Coord_Y="5.0" />
+        <Enemy Type="foo" Tick="200" Coord_X="0.0" Coord_Y="5.0" />
+        <Enemy Type="foo" Tick="300" Coord_X="0.0" Coord_Y="5.0" />
+        <Enemy Type="foo" Tick="400" Coord_X="0.0" Coord_Y="5.0" />
+    </Enemies>
+</Stage>

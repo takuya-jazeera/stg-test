@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2eyh5xqu4meo" path="res://Textures/bg.png" id="2_sa11w"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_503gi")
 shader_parameter/phase = 0.0

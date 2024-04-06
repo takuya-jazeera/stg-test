@@ -12,6 +12,15 @@ var tick = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	var parser = XMLParser.new()
+	parser.open("Res/test.xml")
+	while parser.read() != ERR_FILE_EOF :
+		var node_name = parser.get_node_name()
+		var attributes_dict = {}
+		for idx in range(parser.get_attribute_count()):
+			attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
+		print(node_name ,":", attributes_dict)
 	pass # Replace with function body.
 
 
@@ -38,7 +47,7 @@ func _process(delta):
 		self.add_child(new_bird)
 		
 	var bgmat = $background.get_active_material(0)
-	bgmat.set_shader_parameter("phase",0.01 * global_time)
+	bgmat.set_shader_parameter("phases",Vector2(0.01 * global_time,-0.01* global_time))
 
 func _on_collision_shape_3d_tree_exited(body: Node3D):
 	

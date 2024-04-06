@@ -15,6 +15,8 @@ var frequency = 0.0
 var speed = 0.01 * UNIT_TIME
 var initial_x 
 var intertia = 0.0
+var health = 10
+
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -22,6 +24,9 @@ var intertia = 0.0
 # this flag is enabled
 # and when it destroyed spawn blasting effect
 var bIsKilled = false
+var bIsDamaging = false
+
+var damageCoolTime = 0
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -41,14 +46,18 @@ func _movement():
 	
 	## くるくる回転させる処理をここでやってます
 	var theta = tick * 1.0 / intertia;
-	var p = Quaternion(0.0,0.0,cos(theta),sin(theta))
+	var p = Quaternion(0.0,cos(-theta),0.0,sin(-theta))
 	#var n = position.normalized()
 	#var q = Quaternion(0.0,cos(PI * (-0.1 * cos(tick * frequency)+  0.5)),0.0,
 	#						sin(PI * (-0.1 * cos(tick*frequency) +  0.5)))
 	quaternion = p
 	#quaternion = q * p	
+func _copy_material():
+	var mat = $enemy1/Enemy.get_active_material(0)
+	var new_mat = mat.duplicate()
+	$enemy1/Enemy.material_override = new_mat
 	pass
-
+	
 # ---------------------------------------------
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -57,7 +66,8 @@ func _ready():
 	amplitude = 0.5 * randf() 
 	#angluar_momentum = clamp(30.0 * randf(), 10.0, 20.0)
 	intertia = max(10.0, 30.0 * randf())
-	#$MeshInstance3D
+	_copy_material()
+	#$MeshInstance3D3
 # ---------------------------------------------
 	
 	
@@ -75,6 +85,25 @@ func _process(delta):
 	if (interval > UNIT_TIME) :
 		interval = 0.0
 		tick += 1
+		damageCoolTime += 1
+
+	if bIsDamaging:
+		if damageCoolTime < 10 :
+			
+			var action = max(0.2,1.0 - damageCoolTime * 0.1)
+			
+			var mat = $enemy1/Enemy.get_active_material(0)
+			mat.setup_local_to_scene()
+			#var mat = model.get_active_material(0)
+			mat.set_shader_parameter("flash",action)
+		else :
+			var action = 0.2
+			var mat = $enemy1/Enemy.get_active_material(0)
+			#var mat = model.get_active_material(0)
+			mat.setup_local_to_scene()
+			mat.set_shader_parameter("flash",action)
+			bIsDamaging = false
+		
 	
 	#if tick % 10 == 0 :
 	#	# decision make
@@ -90,12 +119,21 @@ func _process(delta):
 	
 
 func _on_area_3d_body_entered(body):
-	print(body.get_parent().name)
-	if bIsKilled != true :
-		bIsKilled = true
+	#print(body.get_parent().name)
+	
+	body.queue_free()
+	
+	if !bIsDamaging :
+		bIsDamaging = true
+		damageCoolTime = 0
+		health -= 10 # change after I imprements weapon upgrades
+		if health < 0 :
+			bIsKilled = true
+	
+	if bIsKilled == true :
 		var blast = BLAST_FACTORY.instantiate()
 		blast.position = self.position
 		get_parent().add_child(blast)
 		# $AudioStreamPlayer3D.play()
-		body.queue_free()
+		#body.queue_free()
 		queue_free()

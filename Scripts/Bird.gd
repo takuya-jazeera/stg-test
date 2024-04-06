@@ -1,5 +1,5 @@
 class_name BossBird
-extends Boss
+extends MiniBoss
 
 
 # Called when the node enters the scene tree for the first time.

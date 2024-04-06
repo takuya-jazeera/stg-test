@@ -1,4 +1,4 @@
-class_name Boss
+class_name MiniBoss
 extends Enemy
 
 const GOD_TIME = 0.03
@@ -10,7 +10,7 @@ const GOD_TIME = 0.03
 # these are parameters to move that way ~~~
 
 var damage_cooltime = 0
-var health = 100
+
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -18,7 +18,6 @@ var health = 100
 # this flag is enabled
 # and when it destroyed spawn blasting effect
 
-var bIsDamaging = false
 # ---------------------------------------------
 
 # ---------------------------------------------
@@ -31,8 +30,8 @@ var bIsDamaging = false
 # Called everframe by process()
 func _movement():
 	position.z += tick * speed * 0.1
-	
 	pass
+
 
 # ---------------------------------------------
 # Called when the node enters the scene tree for the first time.
@@ -43,6 +42,8 @@ func _ready():
 	#angluar_momentum = clamp(30.0 * randf(), 10.0, 20.0)
 	intertia = max(20.0, 30.0 * randf())
 	#$MeshInstance3D
+
+	health = 100	
 # ---------------------------------------------
 
 func _shoot():
@@ -59,6 +60,7 @@ func _shoot():
 func _express_damage(action) :
 	var model = $"mini-boss/Cone"
 	var mat = model.get_active_material(0)
+	
 	mat.set_shader_parameter("flash",action)
 	
 # ---------------------------------------------

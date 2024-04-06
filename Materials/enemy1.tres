@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dp12bvm2xx35d"]
+
+[ext_resource type="Texture2D" uid="uid://dleecpta72qw" path="res://Models/enemy1_enemy_basic.png" id="2_2c83i"]
+
+[sub_resource type="Shader" id="Shader_4j0nr"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+// render_mode unshaded;
+
+uniform sampler2D tex;		
+uniform float flash = 0.0;	// taken damage
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+
+void fragment() {
+	ALBEDO = texture(tex,UV).xyz + flash * vec3(1.0,1.0,1.0);
+	
+	// ALPHA = koma.z * texture(tex,UV*0.25 + 0.25 * koma.xy).w;
+	// Called for every pixel the material is visible on.
+}
+
+void light() {
+	// Called for every pixel for every light affecting the material.
+	// Uncomment to replace the default light processing function with this one.
+	DIFFUSE_LIGHT = flash * vec3(1.0,1.0,1.0);
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_4j0nr")
+shader_parameter/flash = 0.27
+shader_parameter/tex = ExtResource("2_2c83i")

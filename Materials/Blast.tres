@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://t5uq1gxd6lms" path="res://Res/blast1.png" id="2_pagli"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_k3ago")
 shader_parameter/koma = Vector3(0, 0, 0)

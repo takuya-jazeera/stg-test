@@ -1,10 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://s6lfos00vidf"]
 
 [ext_resource type="Shader" path="res://Shaders/enemy_boss.gdshader" id="1_f7cdc"]
-[ext_resource type="Texture2D" uid="uid://boxmdb2qdvjob" path="res://Models/bird_bird_base.png" id="2_u2c02"]
+[ext_resource type="Texture2D" uid="uid://boxmdb2qdvjob" path="res://Models/bird_bird_base.png" id="2_2na3w"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_f7cdc")
-shader_parameter/flash = 0.1
-shader_parameter/tex = ExtResource("2_u2c02")
+shader_parameter/flash = 0.235
+shader_parameter/tex = ExtResource("2_2na3w")
